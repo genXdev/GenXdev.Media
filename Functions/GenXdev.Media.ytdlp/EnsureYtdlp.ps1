@@ -15,7 +15,7 @@ function EnsureYtDlp {
 
     [CmdletBinding(
         SupportsShouldProcess = $true,
-        ConfirmImpact = 'Severe'
+        ConfirmImpact = 'High'
     )]
     [OutputType([System.Boolean])]
     param ()
