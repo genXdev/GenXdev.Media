@@ -83,7 +83,7 @@ function EnsureYtDlp {
         if (-not $wslInstalled) {
             # output message about WSL installation
                 Microsoft.PowerShell.Utility\Write-Host 'WSL is not installed. Installing WSL...' -ForegroundColor Cyan
-            wsl --install --quiet --accept-eula
+            wsl --install --accept-eula
             # wait for WSL install to complete
                 Microsoft.PowerShell.Utility\Start-Sleep -Seconds 10
         }
@@ -97,7 +97,7 @@ function EnsureYtDlp {
                     Microsoft.PowerShell.Utility\Write-Host (
                         "Installing default WSL image: $defaultImage"
                     ) -ForegroundColor Cyan
-                wsl --install -d $defaultImage --quiet --accept-eula
+                wsl --install -d $defaultImage --accept-eula
             }
         }
 

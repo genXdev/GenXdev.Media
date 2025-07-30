@@ -53,9 +53,10 @@ Update-Module
 
 # Cmdlet Index
 ### GenXdev.Media<hr/>
+### GenXdev.Media.ytdlp
 | Command | Aliases | Description |
 | --- | --- | --- |
-| [EnsureYtdlp](#ensureytdlp) |  | Ensures yt-dlp is installed and available in the default WSL image. |
+| [EnsureYtdlp](#ensureytdlp) | &nbsp; | Ensures yt-dlp is installed and available in the default WSL image. |
 | [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | save-video, savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
 
 <br/><hr/><hr/><br/>
