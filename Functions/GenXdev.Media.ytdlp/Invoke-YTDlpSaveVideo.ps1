@@ -64,11 +64,11 @@ function Invoke-YTDlpSaveVideo {
         $outputTemplate = $OutputFileName
         $quotedUrl = "'${Url}'"
         $quotedOutput = '"%(title)s.%(ext)s"'
-        $ytDlpCmd = "yt-dlp ${quotedUrl} -o ${quotedOutput} --no-playlist --merge-output-format mp4 --embed-subs --embed-thumbnail --write-info-json --write-annotations --write-description --write-thumbnail --write-subs"
+        $ytDlpCmd = "~/.local/bin/yt-dlp ${quotedUrl} -o ${quotedOutput} --no-playlist --merge-output-format mp4 --embed-subs --embed-thumbnail --write-info-json --write-annotations --write-description --write-thumbnail --write-subs"
 
-    Microsoft.PowerShell.Utility\Write-Verbose "Running: wsl bash -c $ytDlpCmd"
+        Microsoft.PowerShell.Utility\Write-Verbose "Running: wsl bash -c $ytDlpCmd"
         try {
-            $result = & wsl bash -c $ytDlpCmd 2>&1
+            $result = & wsl bash -c $ytDlpCmd 2>&1 | Microsoft.PowerShell.Utility\Write-Host
             if ($LASTEXITCODE -ne 0) {
                 Microsoft.PowerShell.Utility\Write-Error "yt-dlp failed: $result"
                 return $false
@@ -81,7 +81,7 @@ function Invoke-YTDlpSaveVideo {
 
         # Find the created mp4 file
     $currentFolder = (Microsoft.PowerShell.Management\Get-Location).Path
-    $mp4Files = Microsoft.PowerShell.Management\Get-ChildItem -Path $currentFolder -Filter *.mp4 | Microsoft.PowerShell.Utility\Sort-Object LastWriteTime -Descending
+    $mp4Files = Microsoft.PowerShell.Management\Get-ChildItem -LiteralPath  $currentFolder -Filter "*.mp4" | Microsoft.PowerShell.Utility\Sort-Object LastWriteTime -Descending
         $mp4FilePath = $null
         if ($mp4Files.Count -gt 0) {
             $mp4FilePath = $mp4Files[0].FullName
@@ -91,7 +91,7 @@ function Invoke-YTDlpSaveVideo {
         $baseName = $mp4FilePath ? [System.IO.Path]::GetFileNameWithoutExtension($mp4FilePath) : $null
         $srtFiles = @()
         if ($baseName) {
-            $srtFiles = Microsoft.PowerShell.Management\Get-ChildItem -Path $currentFolder -Filter "$baseName*.srt" | Microsoft.PowerShell.Utility\Sort-Object LastWriteTime -Descending
+            $srtFiles = Microsoft.PowerShell.Management\Get-ChildItem -LiteralPath  $currentFolder -Filter "$baseName*.srt" | Microsoft.PowerShell.Utility\Sort-Object LastWriteTime -Descending
         }
 
         # Sanitize filenames (remove leading/trailing unicode, replace invalid chars, trim length)
@@ -109,7 +109,7 @@ function Invoke-YTDlpSaveVideo {
             if ($file.Name -ne $newName) {
                 try {
                     # Removed unused variable 'newPath' per PSScriptAnalyzer rule
-                    Microsoft.PowerShell.Management\Rename-Item -Path $file.FullName -NewName $newName -ErrorAction Stop
+                    Microsoft.PowerShell.Management\Rename-Item -LiteralPath $file.FullName -NewName $newName -ErrorAction Stop
                     $sanitizedSrtFiles += $newName
                 } catch {
                     Microsoft.PowerShell.Utility\Write-Warning "Failed to rename $($file.Name) to ${newName}: $_"
@@ -130,18 +130,18 @@ function Invoke-YTDlpSaveVideo {
         }
 
         $videoInfoObj = @{}
-        if (Microsoft.PowerShell.Management\Test-Path $infoJsonFile) {
+        if (Microsoft.PowerShell.Management\Test-Path -LiteralPath $infoJsonFile) {
             try {
-                $infoJsonContent = Microsoft.PowerShell.Management\Get-Content -Path $infoJsonFile -Raw
+                $infoJsonContent = Microsoft.PowerShell.Management\Get-Content -LiteralPath  $infoJsonFile -Raw
                 $videoInfoObj.InfoJson = $infoJsonContent | Microsoft.PowerShell.Utility\ConvertFrom-Json
             } catch {
                 Microsoft.PowerShell.Utility\Write-Warning "Failed to parse info.json: $_"
                 $videoInfoObj.InfoJson = $infoJsonContent
             }
         }
-        if (Microsoft.PowerShell.Management\Test-Path $descriptionFile) {
+        if (Microsoft.PowerShell.Management\Test-Path -LiteralPath $descriptionFile) {
             try {
-                $descriptionContent = Microsoft.PowerShell.Management\Get-Content -Path $descriptionFile -Raw
+                $descriptionContent = Microsoft.PowerShell.Management\Get-Content -LiteralPath  $descriptionFile -Raw
                 $videoInfoObj.Description = $descriptionContent
             } catch {
                 Microsoft.PowerShell.Utility\Write-Warning "Failed to read description: $_"
@@ -160,8 +160,8 @@ function Invoke-YTDlpSaveVideo {
                 [io.file]::WriteAllText("${mp4FilePath}:videoinfo.json", $jsonToSave)
                 Microsoft.PowerShell.Utility\Write-Verbose "Saved video info JSON to alternate data stream: ${mp4FilePath}:videoinfo.json"
                 # Remove .info.json and .description files
-                if (Microsoft.PowerShell.Management\Test-Path $infoJsonFile) { Microsoft.PowerShell.Management\Remove-Item $infoJsonFile -Force }
-                if (Microsoft.PowerShell.Management\Test-Path $descriptionFile) { Microsoft.PowerShell.Management\Remove-Item $descriptionFile -Force }
+                if (Microsoft.PowerShell.Management\Test-Path -LiteralPath $infoJsonFile) { Microsoft.PowerShell.Management\Remove-Item -LiteralPath $infoJsonFile -Force }
+                if (Microsoft.PowerShell.Management\Test-Path -LiteralPath $descriptionFile) { Microsoft.PowerShell.Management\Remove-Item -LiteralPath $descriptionFile -Force }
             } catch {
                 Microsoft.PowerShell.Utility\Write-Warning "Failed to save video info JSON to alternate data stream: $_"
             }

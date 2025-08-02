@@ -83,8 +83,8 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 
 ### DESCRIPTION 
     Checks for WSL, installs it if missing, ensures the default image is present,  
-    installs python3 and yt-dlp if needed, and provides status messages. Returns  
-    $true if setup is successful.  
+    installs python3, pip3, pipx, and yt-dlp if needed using a single command to minimize sudo prompts,  
+    and provides status messages. Returns $true if setup is successful.  
 
 ### PARAMETERS 
     -WhatIf [<SwitchParameter>]  
