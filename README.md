@@ -57,7 +57,7 @@ Update-Module
 | Command | Aliases | Description |
 | --- | --- | --- |
 | [EnsureYtdlp](#ensureytdlp) | &nbsp; | Ensures yt-dlp is installed and available in the default WSL image. |
-| [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | save-video, savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
+| [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | Save-Video, savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
 
 <br/><hr/><hr/><br/>
 
@@ -66,6 +66,184 @@ Update-Module
 
 &nbsp;<hr/>
 ###	GenXdev.Media.ytdlp<hr/> 
+
+##	EnsureYtdlp 
+````PowerShell 
+
+   EnsureYtDlp  
+```` 
+
+### SYNOPSIS 
+    Ensures yt-dlp is installed and available in the default WSL image.  
+
+### SYNTAX 
+````PowerShell 
+EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
+```` 
+
+### DESCRIPTION 
+    Checks for WSL, installs it if missing, ensures the default image is present,  
+    installs python3, pip3, pipx, and yt-dlp if needed using a single command to minimize sudo prompts,  
+    and provides status messages. Returns $true if setup is successful.  
+
+### PARAMETERS 
+    -WhatIf [<SwitchParameter>]  
+        Required?                    false  
+        Position?                    named  
+        Default value                  
+        Accept pipeline input?       false  
+        Aliases                        
+        Accept wildcard characters?  false  
+    -Confirm [<SwitchParameter>]  
+        Required?                    false  
+        Position?                    named  
+        Default value                  
+        Accept pipeline input?       false  
+        Aliases                        
+        Accept wildcard characters?  false  
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+
+<br/><hr/><hr/><br/>
+ 
+
+##	Invoke-YTDlpSaveVideo 
+````PowerShell 
+
+   Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
+```` 
+
+### SYNOPSIS 
+    Downloads a video from a specified URL using yt-dlp and saves metadata.  
+
+### SYNTAX 
+````PowerShell 
+Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
+```` 
+
+### DESCRIPTION 
+    Downloads a video from the provided URL using yt-dlp, saves subtitles,  
+    description, and info JSON, sanitizes filenames, and stores metadata in NTFS  
+    alternate data streams. Handles clipboard input and provides verbose output  
+    for key steps.  
+
+### PARAMETERS 
+    -Url <String>  
+        The video URL to download. If not provided, attempts to use clipboard.  
+        Required?                    true  
+        Position?                    1  
+        Default value                  
+        Accept pipeline input?       true (ByValue, ByPropertyName)  
+        Aliases                        
+        Accept wildcard characters?  false  
+    -OutputFileName <String>  
+        The output filename or template for the downloaded video.  
+        Required?                    false  
+        Position?                    named  
+        Default value                %(title)s.%(ext)s  
+        Accept pipeline input?       false  
+        Aliases                        
+        Accept wildcard characters?  false  
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+
+<br/><hr/><hr/><br/>
+ 
+
+##	EnsureYtdlp 
+````PowerShell 
+
+   EnsureYtDlp  
+```` 
+
+### SYNOPSIS 
+    Ensures yt-dlp is installed and available in the default WSL image.  
+
+### SYNTAX 
+````PowerShell 
+EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
+```` 
+
+### DESCRIPTION 
+    Checks for WSL, installs it if missing, ensures the default image is present,  
+    installs python3, pip3, pipx, and yt-dlp if needed using a single command to minimize sudo prompts,  
+    and provides status messages. Returns $true if setup is successful.  
+
+### PARAMETERS 
+    -WhatIf [<SwitchParameter>]  
+        Required?                    false  
+        Position?                    named  
+        Default value                  
+        Accept pipeline input?       false  
+        Aliases                        
+        Accept wildcard characters?  false  
+    -Confirm [<SwitchParameter>]  
+        Required?                    false  
+        Position?                    named  
+        Default value                  
+        Accept pipeline input?       false  
+        Aliases                        
+        Accept wildcard characters?  false  
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+
+<br/><hr/><hr/><br/>
+ 
+
+##	Invoke-YTDlpSaveVideo 
+````PowerShell 
+
+   Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
+```` 
+
+### SYNOPSIS 
+    Downloads a video from a specified URL using yt-dlp and saves metadata.  
+
+### SYNTAX 
+````PowerShell 
+Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
+```` 
+
+### DESCRIPTION 
+    Downloads a video from the provided URL using yt-dlp, saves subtitles,  
+    description, and info JSON, sanitizes filenames, and stores metadata in NTFS  
+    alternate data streams. Handles clipboard input and provides verbose output  
+    for key steps.  
+
+### PARAMETERS 
+    -Url <String>  
+        The video URL to download. If not provided, attempts to use clipboard.  
+        Required?                    true  
+        Position?                    1  
+        Default value                  
+        Accept pipeline input?       true (ByValue, ByPropertyName)  
+        Aliases                        
+        Accept wildcard characters?  false  
+    -OutputFileName <String>  
+        The output filename or template for the downloaded video.  
+        Required?                    false  
+        Position?                    named  
+        Default value                %(title)s.%(ext)s  
+        Accept pipeline input?       false  
+        Aliases                        
+        Accept wildcard characters?  false  
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+
+<br/><hr/><hr/><br/>
+ 
 
 ##	EnsureYtdlp 
 ````PowerShell 
