@@ -12,7 +12,7 @@
 
 ## MIT License
 
-```text
+````text
 MIT License
 
 Copyright (c) 2025 GenXdev
@@ -41,25 +41,25 @@ SOFTWARE.
 ### DEPENDENCIES
 [![WinOS - Windows-10 or later](https://img.shields.io/badge/WinOS-Windows--10--10.0.19041--SP0-brightgreen)](https://www.microsoft.com/en-us/windows/get-windows-10)  [![GenXdev.Data](https://img.shields.io/powershellgallery/v/GenXdev.Data.svg?style=flat-square&label=GenXdev.Data)](https://www.powershellgallery.com/packages/GenXdev.Data/)  [![GenXdev.Helpers](https://img.shields.io/powershellgallery/v/GenXdev.Helpers.svg?style=flat-square&label=GenXdev.Helpers)](https://www.powershellgallery.com/packages/GenXdev.Helpers/) [![GenXdev.Webbrowser](https://img.shields.io/powershellgallery/v/GenXdev.Webbrowser.svg?style=flat-square&label=GenXdev.Webbrowser)](https://www.powershellgallery.com/packages/GenXdev.Webbrowser/) [![GenXdev.Queries](https://img.shields.io/powershellgallery/v/GenXdev.Queries.svg?style=flat-square&label=GenXdev.Queries)](https://www.powershellgallery.com/packages/GenXdev.Webbrowser/) [![GenXdev.Console](https://img.shields.io/powershellgallery/v/GenXdev.Console.svg?style=flat-square&label=GenXdev.Console)](https://www.powershellgallery.com/packages/GenXdev.Console/)  [![GenXdev.FileSystem](https://img.shields.io/powershellgallery/v/GenXdev.FileSystem.svg?style=flat-square&label=GenXdev.FileSystem)](https://www.powershellgallery.com/packages/GenXdev.FileSystem/)
 ### INSTALLATION
-````PowerShell
+```PowerShell
 Install-Module "GenXdev.Media"
 Import-Module "GenXdev.Media"
-````
+```
 ### UPDATE
-````PowerShell
+```PowerShell
 Update-Module
-````
-<br/><hr/><hr/><br/>
+```
+
+<br/><hr/><br/>
 
 # Cmdlet Index
-### GenXdev.Media<hr/>
 ### GenXdev.Media.ytdlp
 | Command | Aliases | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [EnsureYtdlp](#ensureytdlp) | &nbsp; | Ensures yt-dlp is installed and available in the default WSL image. |
 | [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | Save-Video, savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
 
 
 # Cmdlets
@@ -68,7 +68,7 @@ Update-Module
 ###	GenXdev.Media.ytdlp<hr/> 
 
 ##	EnsureYtdlp 
-````PowerShell 
+```PowerShell 
 
    EnsureYtDlp  
 ```` 
@@ -77,7 +77,7 @@ Update-Module
     Ensures yt-dlp is installed and available in the default WSL image.  
 
 ### SYNTAX 
-````PowerShell 
+```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
 ```` 
 
@@ -107,11 +107,11 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
  
 
 ##	Invoke-YTDlpSaveVideo 
-````PowerShell 
+```PowerShell 
 
    Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
 ```` 
@@ -120,7 +120,7 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
     Downloads a video from a specified URL using yt-dlp and saves metadata.  
 
 ### SYNTAX 
-````PowerShell 
+```PowerShell 
 Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
 ```` 
 
@@ -153,11 +153,11 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
  
 
 ##	EnsureYtdlp 
-````PowerShell 
+```PowerShell 
 
    EnsureYtDlp  
 ```` 
@@ -166,7 +166,7 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
     Ensures yt-dlp is installed and available in the default WSL image.  
 
 ### SYNTAX 
-````PowerShell 
+```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
 ```` 
 
@@ -196,11 +196,11 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
  
 
 ##	Invoke-YTDlpSaveVideo 
-````PowerShell 
+```PowerShell 
 
    Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
 ```` 
@@ -209,7 +209,7 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
     Downloads a video from a specified URL using yt-dlp and saves metadata.  
 
 ### SYNTAX 
-````PowerShell 
+```PowerShell 
 Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
 ```` 
 
@@ -242,11 +242,11 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
  
 
 ##	EnsureYtdlp 
-````PowerShell 
+```PowerShell 
 
    EnsureYtDlp  
 ```` 
@@ -255,7 +255,7 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
     Ensures yt-dlp is installed and available in the default WSL image.  
 
 ### SYNTAX 
-````PowerShell 
+```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
 ```` 
 
@@ -285,11 +285,11 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
  
 
 ##	Invoke-YTDlpSaveVideo 
-````PowerShell 
+```PowerShell 
 
    Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
 ```` 
@@ -298,7 +298,7 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
     Downloads a video from a specified URL using yt-dlp and saves metadata.  
 
 ### SYNTAX 
-````PowerShell 
+```PowerShell 
 Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
 ```` 
 
@@ -331,4 +331,4 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
 
-<br/><hr/><hr/><br/>
+<br/><hr/><br/>
