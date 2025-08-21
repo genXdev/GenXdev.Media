@@ -81,6 +81,7 @@ function EnsureYtDlp {
 
         # Ensure the distro is running
     Microsoft.PowerShell.Utility\Write-Host "Ensuring $selectedDistro is running..." -ForegroundColor Cyan
+
         wsl -d $selectedDistro -- echo "Distro is running"
 
         # Check if python3, pip3, pipx, and yt-dlp are installed
@@ -94,10 +95,18 @@ function EnsureYtDlp {
         if (-not $pythonCheck -or -not $pipCheck -or -not $pipxCheck -or $ytDlpResult -eq "not_found") {
             if ($PSCmdlet.ShouldProcess("Install python3, pip3, pipx, and yt-dlp in $selectedDistro")) {
                 Microsoft.PowerShell.Utility\Write-Host "Installing required packages and yt-dlp in $selectedDistro" -ForegroundColor Cyan
-                $installCmd = "sudo apt-get update -y && sudo apt-get install -y python3 python3-pip pipx && apt-get install ffmpeg -y &&pipx install --force yt-dlp && echo 'export PATH=`"$HOME/.local/bin:`$PATH`"' >> ~/.bashrc && source ~/.bashrc"
-                $installResult = wsl -d $selectedDistro -- bash -c $installCmd 2>&1
+                # Combine all sudo-required commands into a single bash session to minimize password prompts
+                $sudoBlock = @(
+                    'sudo apt-get update -y',
+                    'sudo apt-get install -y python3 python3-pip pipx ffmpeg',
+                    'pipx ensurepath',
+                    'pipx install --force yt-dlp',
+                    'echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> ~/.bashrc',
+                    'source ~/.bashrc'
+                ) -join ' && '
+                wsl -d $selectedDistro -- bash -c "$sudoBlock"
                 if ($LASTEXITCODE -ne 0) {
-                    Microsoft.PowerShell.Utility\Write-Warning "Failed to install required packages or yt-dlp: $installResult"
+                    Microsoft.PowerShell.Utility\Write-Warning "Failed to install required packages or yt-dlp."
                     return $false
                 }
 

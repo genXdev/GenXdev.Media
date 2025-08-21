@@ -49,6 +49,25 @@ function Invoke-YTDlpSaveVideo {
     begin {
         # Ensure yt-dlp environment is ready
         GenXdev.Media\EnsureYtDlp
+
+        # Detect the correct WSL distro (same logic as EnsureYtdlp.ps1)
+        $defaultImage = 'kali-linux'
+        $images = wsl -l -q | Microsoft.PowerShell.Core\Where-Object { $_ -and $_ -ne 'docker-desktop' }
+        $compatibleDistros = @('kali-linux', 'Ubuntu', 'Ubuntu-24.04', 'Ubuntu-20.04', 'Ubuntu-22.04', 'Ubuntu-18.04', 'AlmaLinux-8', 'AlmaLinux-9', 'AlmaLinux-Kitten-10', 'AlmaLinux-10')
+        $selectedDistro = $null
+        foreach ($distro in $compatibleDistros) {
+            if ($images -contains $distro) {
+                $pythonCheck = wsl -d $distro -- which python3
+                $pipCheck = wsl -d $distro -- which pip3
+                if ($pythonCheck -and $pipCheck) {
+                    $selectedDistro = $distro
+                    break
+                }
+            }
+        }
+        if (-not $selectedDistro) {
+            $selectedDistro = $defaultImage
+        }
     }
 
     process {
@@ -66,9 +85,9 @@ function Invoke-YTDlpSaveVideo {
         $quotedOutput = '"%(title)s.%(ext)s"'
         $ytDlpCmd = "~/.local/bin/yt-dlp ${quotedUrl} -o ${quotedOutput} --no-playlist --merge-output-format mp4 --embed-subs --embed-thumbnail --write-info-json --write-annotations --write-description --write-thumbnail --write-subs"
 
-        Microsoft.PowerShell.Utility\Write-Verbose "Running: wsl bash -c $ytDlpCmd"
+        Microsoft.PowerShell.Utility\Write-Verbose "Running: wsl -d $selectedDistro -- bash -c $ytDlpCmd"
         try {
-            $result = & wsl bash -c $ytDlpCmd 2>&1 | Microsoft.PowerShell.Utility\Write-Host
+            $result = & wsl -d $selectedDistro -- bash -c $ytDlpCmd 2>&1 | Microsoft.PowerShell.Utility\Write-Host
             if ($LASTEXITCODE -ne 0) {
                 Microsoft.PowerShell.Utility\Write-Error "yt-dlp failed: $result"
                 return $false
