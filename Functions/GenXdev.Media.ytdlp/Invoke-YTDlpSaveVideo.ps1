@@ -1,4 +1,4 @@
-###############################################################################
+﻿###############################################################################
 <#
 .SYNOPSIS
 Downloads a video from a specified URL using yt-dlp and saves metadata.
@@ -23,7 +23,7 @@ Save-Video "https://youtube.com/watch?v=abc123"
 #>
 function Invoke-YTDlpSaveVideo {
     [CmdletBinding()]
-    [OutputType([System.Boolean])]
+    [OutputType([System.IO.FileInfo])]
     [Alias("Save-Video", "savevideo")]
     param(
         ###############################################################################
@@ -86,16 +86,134 @@ function Invoke-YTDlpSaveVideo {
         $ytDlpCmd = "~/.local/bin/yt-dlp ${quotedUrl} -o ${quotedOutput} --no-playlist --merge-output-format mp4 --embed-subs --embed-thumbnail --write-info-json --write-annotations --write-description --write-thumbnail --write-subs"
 
         Microsoft.PowerShell.Utility\Write-Verbose "Running: wsl -d $selectedDistro -- bash -c $ytDlpCmd"
+
+        # Progress tracking variables
+        $progressId = Microsoft.PowerShell.Utility\Get-Random
+        $errorOutput = @()
+
         try {
-            $result = & wsl -d $selectedDistro -- bash -c $ytDlpCmd 2>&1 | Microsoft.PowerShell.Utility\Write-Host
-            if ($LASTEXITCODE -ne 0) {
-                Microsoft.PowerShell.Utility\Write-Error "yt-dlp failed: $result"
-                return $false
+            Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Initializing download" -Status "Starting yt-dlp..."
+
+            # Use simple WSL pipeline with ForEach-Object for real-time processing
+            $null = & wsl -d $selectedDistro -- bash -c $ytDlpCmd 2>&1 | Microsoft.PowerShell.Core\ForEach-Object {
+                $line = $_.ToString()
+
+                # Progress patterns for download
+                if ($line -match '\[download\]\s+(\d+\.?\d*)%\s+of\s+(\d+\.?\d*)(.*?)\s+at\s+(\d+\.?\d*)(.*?)\s+ETA\s+(\d+:\d+:\d+|\d+:\d+)') {
+                    $percent = [double]$matches[1]
+                    $totalSize = $matches[2] + $matches[3]
+                    $speed = $matches[4] + $matches[5]
+                    $eta = $matches[6]
+
+                    $activity = "Downloading Video"
+                    $status = "Progress: ${percent}% | Size: ${totalSize} | Speed: ${speed} | ETA: ${eta}"
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity $activity -Status $status -PercentComplete $percent
+                    return
+                }
+
+                # Progress patterns for subtitles
+                if ($line -match '\[download\]\s+(\d+\.?\d*)%\s+of\s+(\d+\.?\d*)(.*?)\s+at.*?(\.vtt|\.srt)') {
+                    $percent = [double]$matches[1]
+                    $totalSize = $matches[2] + $matches[3]
+
+                    $activity = "Downloading Subtitles"
+                    $status = "Progress: ${percent}% | Size: ${totalSize}"
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity $activity -Status $status -PercentComplete $percent
+                    return
+                }
+
+                # Show only the URL extraction (starting point) and extracting video title
+                if ($line -match '\[.*\] Extracting URL:') {
+                    Microsoft.PowerShell.Utility\Write-Host $line -ForegroundColor Cyan
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Extracting Video Information" -Status "Analyzing URL..."
+                    return
+                }
+
+                # Show video title when found - look for the actual video ID and title pattern
+                if ($line -match '\[.*\] (\d{13,}): (.+)' -and $matches[2] -notmatch '^Downloading') {
+                    $videoTitle = $matches[2]
+                    Microsoft.PowerShell.Utility\Write-Host "📹 Video: $videoTitle" -ForegroundColor Green
+                    return
+                }
+
+                # Update progress for different phases (but don't show the detailed messages)
+                if ($line -match 'Downloading.*format') {
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Preparing Download" -Status "Setting up video download..."
+                    return
+                } elseif ($line -match 'Writing.*subtitles') {
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Processing Subtitles" -Status "Saving subtitle files..."
+                    return
+                } elseif ($line -match 'Writing.*thumbnail') {
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Processing Thumbnail" -Status "Saving thumbnail image..."
+                    return
+                } elseif ($line -match 'Writing.*description') {
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Processing Metadata" -Status "Saving video description..."
+                    return
+                } elseif ($line -match 'EmbedSubtitle') {
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Embedding Subtitles" -Status "Adding subtitles to video file..."
+                    return
+                } elseif ($line -match 'EmbedThumbnail') {
+                    Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Activity "Embedding Thumbnail" -Status "Adding thumbnail to video file..."
+                    return
+                }
+
+                # Warning patterns - show these
+                if ($line -match '^WARNING:' -or $line -match '^\[.*\].*WARNING') {
+                    Microsoft.PowerShell.Utility\Write-Warning $line
+                    return
+                }
+
+                # Error patterns - collect these
+                if ($line -match '^ERROR:' -or $line -match 'failed' -or $line -match 'error') {
+                    $script:errorOutput += $line
+                    Microsoft.PowerShell.Utility\Write-Host $line -ForegroundColor Red
+                    return
+                }
+
+                # Skip raw progress lines (these are the ones we're replacing)
+                if ($line -match '^\[download\]\s+\d+\.?\d*%') {
+                    return
+                }
+
+                # Skip most technical info messages - be comprehensive
+                if ($line -match '^\[download\] Destination:' -or
+                    $line -match '^\[download\] 100%' -or
+                    $line -match '^\[info\] Writing' -or
+                    $line -match '^\[info\] Downloading.*thumbnail' -or
+                    $line -match '^\[info\] \d+: Downloading subtitles:' -or
+                    $line -match '^\[info\] \d+: Downloading \d+ format' -or
+                    $line -match '^\[info\] Writing video metadata' -or
+                    $line -match '^\[info\] Writing video description' -or
+                    $line -match '^\[info\] Writing video subtitles') {
+                    return
+                }
+
+                # Only pass through truly important messages
+                # Skip all other [info] messages that are technical details
+                if ($line -match '^\[info\]') {
+                    return
+                }
+
+                # Pass through other important output that's not filtered above
+                if ($line.Trim().Length -gt 0) {
+                    $line
+                }
             }
+
+            # Clear the progress bar
+            Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Completed
+
+            if ($LASTEXITCODE -ne 0) {
+                $errorText = if ($errorOutput.Count -gt 0) { $errorOutput -join "`n" } else { "Unknown error" }
+                Microsoft.PowerShell.Utility\Write-Error "yt-dlp failed with exit code ${LASTEXITCODE}: $errorText"
+                return # Return nothing on failure
+            }
+
             Microsoft.PowerShell.Utility\Write-Host "✅ Video saved using yt-dlp: $outputTemplate"
         } catch {
+            Microsoft.PowerShell.Utility\Write-Progress -Id $progressId -Completed
             Microsoft.PowerShell.Utility\Write-Error "yt-dlp execution error: $_"
-            return $false
+            return # Return nothing on failure
         }
 
         # Find the created mp4 file
@@ -187,6 +305,20 @@ function Invoke-YTDlpSaveVideo {
         } else {
             Microsoft.PowerShell.Utility\Write-Warning "Could not find both mp4 and json files to save alternate data stream."
         }
-        return $true
+
+        # Return the downloaded video file on success
+        if ($mp4FilePath -and (Microsoft.PowerShell.Management\Test-Path -LiteralPath $mp4FilePath)) {
+            Microsoft.PowerShell.Management\Get-ChildItem -LiteralPath $mp4FilePath
+        } else {
+            # Try to find the most recently created .mp4 file as fallback
+            $currentFolder = (Microsoft.PowerShell.Management\Get-Location).Path
+            $recentMp4 = Microsoft.PowerShell.Management\Get-ChildItem -LiteralPath $currentFolder -Filter "*.mp4" |
+                Microsoft.PowerShell.Utility\Sort-Object LastWriteTime -Descending |
+                Microsoft.PowerShell.Utility\Select-Object -First 1
+            if ($recentMp4) {
+                $recentMp4
+            }
+            # If no MP4 found, return nothing (implicit)
+        }
     }
 }
