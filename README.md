@@ -57,7 +57,7 @@ Update-Module
 | Command | Aliases | Description |
 | :--- | :--- | :--- |
 | [EnsureYtdlp](#ensureytdlp) | &nbsp; | Ensures yt-dlp is installed and available in the default WSL image. |
-| [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | Save-Video, savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
+| [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
 
 <br/><hr/><br/>
 
@@ -73,33 +73,27 @@ Update-Module
    EnsureYtDlp  
 ```` 
 
-### SYNOPSIS 
-    Ensures yt-dlp is installed and available in the default WSL image.  
-
 ### SYNTAX 
 ```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
 ```` 
 
-### DESCRIPTION 
-    Checks for WSL, installs it if missing, ensures the default image is present,  
-    installs python3, pip3, pipx, and yt-dlp if needed using a single command to minimize sudo prompts,  
-    and provides status messages. Returns $true if setup is successful.  
-
 ### PARAMETERS 
-    -WhatIf [<SwitchParameter>]  
+    -Confirm  
         Required?                    false  
-        Position?                    named  
-        Default value                  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      cf  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
-    -Confirm [<SwitchParameter>]  
+    -WhatIf  
         Required?                    false  
-        Position?                    named  
-        Default value                  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      wi  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
@@ -113,39 +107,32 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 ##	Invoke-YTDlpSaveVideo 
 ```PowerShell 
 
-   Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
+   Invoke-YTDlpSaveVideo                --> savevideo  
 ```` 
-
-### SYNOPSIS 
-    Downloads a video from a specified URL using yt-dlp and saves metadata.  
 
 ### SYNTAX 
 ```PowerShell 
-Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
+Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName <string>] [<CommonParameters>] 
 ```` 
 
-### DESCRIPTION 
-    Downloads a video from the provided URL using yt-dlp, saves subtitles,  
-    description, and info JSON, sanitizes filenames, and stores metadata in NTFS  
-    alternate data streams. Handles clipboard input and provides verbose output  
-    for key steps.  
-
 ### PARAMETERS 
-    -Url <String>  
-        The video URL to download. If not provided, attempts to use clipboard.  
-        Required?                    true  
-        Position?                    1  
-        Default value                  
-        Accept pipeline input?       true (ByValue, ByPropertyName)  
-        Aliases                        
-        Accept wildcard characters?  false  
-    -OutputFileName <String>  
-        The output filename or template for the downloaded video.  
+    -OutputFileName <string>  
+        Output filename or template  
         Required?                    false  
-        Position?                    named  
-        Default value                %(title)s.%(ext)s  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
+        Accept wildcard characters?  false  
+    -Url <string>  
+        The video URL to download  
+        Required?                    true  
+        Position?                    0  
+        Accept pipeline input?       true (ByValue, ByPropertyName)  
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
@@ -162,33 +149,27 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
    EnsureYtDlp  
 ```` 
 
-### SYNOPSIS 
-    Ensures yt-dlp is installed and available in the default WSL image.  
-
 ### SYNTAX 
 ```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
 ```` 
 
-### DESCRIPTION 
-    Checks for WSL, installs it if missing, ensures the default image is present,  
-    installs python3, pip3, pipx, and yt-dlp if needed using a single command to minimize sudo prompts,  
-    and provides status messages. Returns $true if setup is successful.  
-
 ### PARAMETERS 
-    -WhatIf [<SwitchParameter>]  
+    -Confirm  
         Required?                    false  
-        Position?                    named  
-        Default value                  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      cf  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
-    -Confirm [<SwitchParameter>]  
+    -WhatIf  
         Required?                    false  
-        Position?                    named  
-        Default value                  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      wi  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
@@ -202,39 +183,32 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 ##	Invoke-YTDlpSaveVideo 
 ```PowerShell 
 
-   Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
+   Invoke-YTDlpSaveVideo                --> savevideo  
 ```` 
-
-### SYNOPSIS 
-    Downloads a video from a specified URL using yt-dlp and saves metadata.  
 
 ### SYNTAX 
 ```PowerShell 
-Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
+Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName <string>] [<CommonParameters>] 
 ```` 
 
-### DESCRIPTION 
-    Downloads a video from the provided URL using yt-dlp, saves subtitles,  
-    description, and info JSON, sanitizes filenames, and stores metadata in NTFS  
-    alternate data streams. Handles clipboard input and provides verbose output  
-    for key steps.  
-
 ### PARAMETERS 
-    -Url <String>  
-        The video URL to download. If not provided, attempts to use clipboard.  
-        Required?                    true  
-        Position?                    1  
-        Default value                  
-        Accept pipeline input?       true (ByValue, ByPropertyName)  
-        Aliases                        
-        Accept wildcard characters?  false  
-    -OutputFileName <String>  
-        The output filename or template for the downloaded video.  
+    -OutputFileName <string>  
+        Output filename or template  
         Required?                    false  
-        Position?                    named  
-        Default value                %(title)s.%(ext)s  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
+        Accept wildcard characters?  false  
+    -Url <string>  
+        The video URL to download  
+        Required?                    true  
+        Position?                    0  
+        Accept pipeline input?       true (ByValue, ByPropertyName)  
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
@@ -251,33 +225,27 @@ Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParamet
    EnsureYtDlp  
 ```` 
 
-### SYNOPSIS 
-    Ensures yt-dlp is installed and available in the default WSL image.  
-
 ### SYNTAX 
 ```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
 ```` 
 
-### DESCRIPTION 
-    Checks for WSL, installs it if missing, ensures the default image is present,  
-    installs python3, pip3, pipx, and yt-dlp if needed using a single command to minimize sudo prompts,  
-    and provides status messages. Returns $true if setup is successful.  
-
 ### PARAMETERS 
-    -WhatIf [<SwitchParameter>]  
+    -Confirm  
         Required?                    false  
-        Position?                    named  
-        Default value                  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      cf  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
-    -Confirm [<SwitchParameter>]  
+    -WhatIf  
         Required?                    false  
-        Position?                    named  
-        Default value                  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      wi  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
@@ -291,39 +259,32 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 ##	Invoke-YTDlpSaveVideo 
 ```PowerShell 
 
-   Invoke-YTDlpSaveVideo                --> Save-Video, savevideo  
+   Invoke-YTDlpSaveVideo                --> savevideo  
 ```` 
-
-### SYNOPSIS 
-    Downloads a video from a specified URL using yt-dlp and saves metadata.  
 
 ### SYNTAX 
 ```PowerShell 
-Invoke-YTDlpSaveVideo [-Url] <String> [-OutputFileName <String>] [<CommonParameters>] 
+Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName <string>] [<CommonParameters>] 
 ```` 
 
-### DESCRIPTION 
-    Downloads a video from the provided URL using yt-dlp, saves subtitles,  
-    description, and info JSON, sanitizes filenames, and stores metadata in NTFS  
-    alternate data streams. Handles clipboard input and provides verbose output  
-    for key steps.  
-
 ### PARAMETERS 
-    -Url <String>  
-        The video URL to download. If not provided, attempts to use clipboard.  
-        Required?                    true  
-        Position?                    1  
-        Default value                  
-        Accept pipeline input?       true (ByValue, ByPropertyName)  
-        Aliases                        
-        Accept wildcard characters?  false  
-    -OutputFileName <String>  
-        The output filename or template for the downloaded video.  
+    -OutputFileName <string>  
+        Output filename or template  
         Required?                    false  
-        Position?                    named  
-        Default value                %(title)s.%(ext)s  
+        Position?                    Named  
         Accept pipeline input?       false  
-        Aliases                        
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
+        Accept wildcard characters?  false  
+    -Url <string>  
+        The video URL to download  
+        Required?                    true  
+        Position?                    0  
+        Accept pipeline input?       true (ByValue, ByPropertyName)  
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
         Accept wildcard characters?  false  
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
