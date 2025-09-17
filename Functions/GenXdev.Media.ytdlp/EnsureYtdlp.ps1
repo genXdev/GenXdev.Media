@@ -2,7 +2,7 @@
 Part of PowerShell module : GenXdev.Media.ytdlp
 Original cmdlet filename  : EnsureYtdlp.ps1
 Original author           : René Vaessen / GenXdev
-Version                   : 1.270.2025
+Version                   : 1.272.2025
 ################################################################################
 MIT License
 
