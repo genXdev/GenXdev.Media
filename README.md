@@ -50,7 +50,7 @@ Update-Module
 | Command | Aliases | Description |
 | :--- | :--- | :--- |
 | [EnsureYtdlp](#ensureytdlp) | &nbsp; | Ensures yt-dlp is installed and available in the default WSL image. |
-| [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | savevideo | Downloads a video from a specified URL using yt-dlp and saves metadata. |
+| [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | savevideo | &nbsp; |
 
 <br/><hr/><br/>
 
@@ -64,14 +64,18 @@ Update-Module
 ```PowerShell 
 
    EnsureYtDlp  
-```` 
+``` 
 
 ### SYNTAX 
 ```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
-```` 
+``` 
 
 ### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
     -Confirm  
         Required?                    false  
         Position?                    Named  
@@ -80,6 +84,8 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         Aliases                      cf  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     -WhatIf  
         Required?                    false  
         Position?                    Named  
@@ -88,11 +94,14 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         Aliases                      wi  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
 
 <br/><hr/><br/>
  
@@ -101,15 +110,19 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 ```PowerShell 
 
    Invoke-YTDlpSaveVideo                --> savevideo  
-```` 
+``` 
 
 ### SYNTAX 
 ```PowerShell 
 Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
     <string>] [<CommonParameters>] 
-```` 
+``` 
 
 ### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
     -OutputFileName <string>  
         Output filename or template  
         Required?                    false  
@@ -119,6 +132,8 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Aliases                      None  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     -Url <string>  
         The video URL to download  
         Required?                    true  
@@ -128,11 +143,14 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Aliases                      None  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
 
 <br/><hr/><br/>
  
@@ -141,14 +159,18 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
 ```PowerShell 
 
    EnsureYtDlp  
-```` 
+``` 
 
 ### SYNTAX 
 ```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
-```` 
+``` 
 
 ### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
     -Confirm  
         Required?                    false  
         Position?                    Named  
@@ -157,6 +179,8 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         Aliases                      cf  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     -WhatIf  
         Required?                    false  
         Position?                    Named  
@@ -165,11 +189,14 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         Aliases                      wi  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
 
 <br/><hr/><br/>
  
@@ -178,15 +205,19 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 ```PowerShell 
 
    Invoke-YTDlpSaveVideo                --> savevideo  
-```` 
+``` 
 
 ### SYNTAX 
 ```PowerShell 
 Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
     <string>] [<CommonParameters>] 
-```` 
+``` 
 
 ### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
     -OutputFileName <string>  
         Output filename or template  
         Required?                    false  
@@ -196,6 +227,8 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Aliases                      None  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     -Url <string>  
         The video URL to download  
         Required?                    true  
@@ -205,11 +238,14 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Aliases                      None  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
 
 <br/><hr/><br/>
  
@@ -218,14 +254,18 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
 ```PowerShell 
 
    EnsureYtDlp  
-```` 
+``` 
 
 ### SYNTAX 
 ```PowerShell 
 EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>] 
-```` 
+``` 
 
 ### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
     -Confirm  
         Required?                    false  
         Position?                    Named  
@@ -234,6 +274,8 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         Aliases                      cf  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     -WhatIf  
         Required?                    false  
         Position?                    Named  
@@ -242,11 +284,14 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
         Aliases                      wi  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
 
 <br/><hr/><br/>
  
@@ -255,15 +300,19 @@ EnsureYtDlp [-WhatIf] [-Confirm] [<CommonParameters>]
 ```PowerShell 
 
    Invoke-YTDlpSaveVideo                --> savevideo  
-```` 
+``` 
 
 ### SYNTAX 
 ```PowerShell 
 Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
     <string>] [<CommonParameters>] 
-```` 
+``` 
 
 ### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
     -OutputFileName <string>  
         Output filename or template  
         Required?                    false  
@@ -273,6 +322,8 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Aliases                      None  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     -Url <string>  
         The video URL to download  
         Required?                    true  
@@ -282,10 +333,13 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Aliases                      None  
         Dynamic?                     false  
         Accept wildcard characters?  false  
+``` 
+```yaml 
     <CommonParameters>  
         This cmdlet supports the common parameters: Verbose, Debug,  
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
         OutBuffer, PipelineVariable, and OutVariable. For more information, see  
         about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
 
 <br/><hr/><br/>
