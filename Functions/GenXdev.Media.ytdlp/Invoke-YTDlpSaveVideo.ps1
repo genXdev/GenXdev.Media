@@ -2,7 +2,7 @@
 Part of PowerShell module : GenXdev.Media.ytdlp
 Original cmdlet filename  : Invoke-YTDlpSaveVideo.ps1
 Original author           : René Vaessen / GenXdev
-Version                   : 1.302.2025
+Version                   : 1.304.2025
 ################################################################################
 Copyright (c)  René Vaessen / GenXdev
 
@@ -68,7 +68,7 @@ function Invoke-YTDlpSaveVideo {
 
     begin {
         # Ensure yt-dlp environment is ready
-        GenXdev.Media\Optimize-EnsureYtDlp
+        GenXdev.Media\EnsureYtDlp
 
         # Detect the correct WSL distro (same logic as EnsureYtdlp.ps1)
         $defaultImage = 'kali-linux'
