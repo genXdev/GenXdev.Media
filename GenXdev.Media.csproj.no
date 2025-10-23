@@ -5,15 +5,15 @@
         <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
         <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
-        <TargetFramework>net9.0-windows10.0.18362.0</TargetFramework>
+        <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
         <OutputType>Library</OutputType>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <NeutralLanguage>en</NeutralLanguage>
-        <AssemblyVersion>1.308.2025</AssemblyVersion>
-        <FileVersion>1.308.2025</FileVersion>
+        <AssemblyVersion>2.1.2025</AssemblyVersion>
+        <FileVersion>2.1.2025</FileVersion>
         <Description>A Windows PowerShell module for basic and advanced file management tasks</Description>
         <Copyright>Copyright (c) 2024 GenXdev</Copyright>
         <PackageProjectUrl>https://github.com/genXdev/GenXdev.Helpers</PackageProjectUrl>

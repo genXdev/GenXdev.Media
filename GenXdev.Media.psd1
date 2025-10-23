@@ -12,7 +12,7 @@
 RootModule = 'GenXdev.Media.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.308.2025'
+ModuleVersion = '2.1.2025'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core'
@@ -33,7 +33,7 @@ Copyright = 'Copyright 2021-2025 GenXdev'
 Description = 'A Windows PowerShell module that helps with converting media files like pictures and video files.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '7.5.0'
+PowerShellVersion = '7.5.4'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -51,7 +51,7 @@ ClrVersion = '9.0.0.1'
 ProcessorArchitecture = 'Amd64'
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @(@{ModuleName = 'GenXdev.AI'; ModuleVersion = '1.308.2025'; })
+RequiredModules = @(@{ModuleName = 'GenXdev.AI'; ModuleVersion = '2.1.2025'; })
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
