@@ -51,6 +51,7 @@ Update-Module
 | :--- | :--- | :--- |
 | [EnsureYtdlp](#ensureytdlp) | &nbsp; | Ensures yt-dlp is installed and available in the default WSL image. |
 | [Invoke-YTDlpSaveVideo](#invoke-ytdlpsavevideo) | savevideo | &nbsp; |
+| [StabilizeVideo](#stabilizevideo) | &nbsp; | &nbsp; |
 
 <br/><hr/><br/>
 
@@ -155,6 +156,42 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
 <br/><hr/><br/>
  
 
+##	StabilizeVideo 
+```PowerShell 
+
+   StabilizeVideo  
+``` 
+
+### SYNTAX 
+```PowerShell 
+StabilizeVideo [[-InputFile] <string>] [<CommonParameters>] 
+``` 
+
+### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
+    -InputFile <string>  
+        Required?                    false  
+        Position?                    0  
+        Accept pipeline input?       false  
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
+        Accept wildcard characters?  false  
+``` 
+```yaml 
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
+
+<br/><hr/><br/>
+ 
+
 ##	EnsureYtdlp 
 ```PowerShell 
 
@@ -250,6 +287,42 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
 <br/><hr/><br/>
  
 
+##	StabilizeVideo 
+```PowerShell 
+
+   StabilizeVideo  
+``` 
+
+### SYNTAX 
+```PowerShell 
+StabilizeVideo [[-InputFile] <string>] [<CommonParameters>] 
+``` 
+
+### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
+    -InputFile <string>  
+        Required?                    false  
+        Position?                    0  
+        Accept pipeline input?       false  
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
+        Accept wildcard characters?  false  
+``` 
+```yaml 
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
+
+<br/><hr/><br/>
+ 
+
 ##	EnsureYtdlp 
 ```PowerShell 
 
@@ -329,6 +402,42 @@ Invoke-YTDlpSaveVideo [-Url] <string> [-OutputFileName
         Required?                    true  
         Position?                    0  
         Accept pipeline input?       true (ByValue, ByPropertyName)  
+        Parameter set name           (All)  
+        Aliases                      None  
+        Dynamic?                     false  
+        Accept wildcard characters?  false  
+``` 
+```yaml 
+    <CommonParameters>  
+        This cmdlet supports the common parameters: Verbose, Debug,  
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,  
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see  
+        about_CommonParameters     (https://go.microsoft.com/fwlink/?LinkID=113216).   
+``` 
+
+<br/><hr/><br/>
+ 
+
+##	StabilizeVideo 
+```PowerShell 
+
+   StabilizeVideo  
+``` 
+
+### SYNTAX 
+```PowerShell 
+StabilizeVideo [[-InputFile] <string>] [<CommonParameters>] 
+``` 
+
+### PARAMETERS 
+```yaml 
+ 
+``` 
+```yaml 
+    -InputFile <string>  
+        Required?                    false  
+        Position?                    0  
+        Accept pipeline input?       false  
         Parameter set name           (All)  
         Aliases                      None  
         Dynamic?                     false  
